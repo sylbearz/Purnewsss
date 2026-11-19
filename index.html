@@ -1,0 +1,676 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kronologi Lengkap Kasus Penculikan Balita di Garut: Pelaku Ternyata Sahabat Karib Ibu Korban - PurNews</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Merriweather untuk nuansa portal berita kredibel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            600: '#dc2626', // Merah Berita Utama
+                            700: '#b91c1c',
+                            900: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .article-body p {
+            margin-bottom: 1.35rem;
+            line-height: 1.85;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300 font-sans antialiased">
+
+    <!-- Toast Notification (Pengganti alert()) -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-900 dark:bg-slate-800 text-white px-5 py-3.5 rounded-xl shadow-2xl border border-slate-700 flex items-center gap-3">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+            <span id="toast-message" class="text-sm font-medium">Tautan berhasil disalin!</span>
+        </div>
+    </div>
+
+    <!-- Top Breaking News Ticker -->
+    <div class="bg-red-600 text-white text-xs sm:text-sm py-2 px-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-2.5 overflow-hidden">
+                <span class="bg-white text-red-600 font-extrabold px-2 py-0.5 rounded text-[11px] uppercase tracking-wider shrink-0 animate-pulse">
+                    Viral & Terungkap
+                </span>
+                <p class="truncate font-medium">
+                    Tim Sancang Polres Garut bekuk penculik balita 2 tahun di dalam angkot Kabupaten Bandung!
+                </p>
+            </div>
+            <div class="hidden md:flex items-center gap-4 shrink-0 text-red-100 text-xs">
+                <span id="current-date"><i class="fa-regular fa-calendar mr-1.5"></i>Kamis, 12 November 2026</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-xl bg-red-600 flex items-center justify-center text-white font-black text-xl shadow-md group-hover:bg-red-700 transition">
+                    PN
+                </div>
+                <div>
+                    <span class="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">Pur<span class="text-red-600">News</span></span>
+                    <span class="block text-[10px] text-slate-500 dark:text-slate-400 -mt-1 font-medium tracking-wider uppercase">Cepat • Akurat • Terpercaya</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                <a href="#" class="text-red-600 dark:text-red-500">Hukum & Kriminal</a>
+                <a href="#fakta-kasus" class="hover:text-red-600 transition">Fakta Kasus</a>
+                <a href="#kronologi" class="hover:text-red-600 transition">Kronologi</a>
+                <a href="#komentar-section" class="hover:text-red-600 transition">Komentar Pembaca</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Font Size Adjuster -->
+                <div class="hidden sm:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 border border-slate-200 dark:border-slate-700">
+                    <button onclick="changeFontSize(-1)" title="Perkecil Teks" class="px-2 py-1 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 rounded transition">A-</button>
+                    <button onclick="changeFontSize(0)" title="Ukuran Normal" class="px-2 py-1 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 rounded transition">A</button>
+                    <button onclick="changeFontSize(1)" title="Perbesar Teks" class="px-2 py-1 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 rounded transition">A+</button>
+                </div>
+
+                <!-- Bookmark Button -->
+                <button id="bookmark-btn" onclick="toggleBookmark()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Simpan Berita">
+                    <i class="fa-regular fa-bookmark"></i>
+                </button>
+
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Ganti Tema">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-5 overflow-x-auto whitespace-nowrap">
+            <a href="#" class="hover:text-red-600"><i class="fa-solid fa-house"></i> Beranda</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <a href="#" class="hover:text-red-600">Jawa Barat</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <a href="#" class="hover:text-red-600">Garut</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <span class="text-red-600 font-semibold">Kriminal</span>
+        </nav>
+
+        <!-- Grid Layout: Main Article (8 cols) + Sidebar (4 cols) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+            
+            <!-- Left Column: Article Content -->
+            <article class="lg:col-span-8">
+                
+                <!-- Category & Viral Badges -->
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span class="bg-red-100 text-red-700 dark:bg-red-950/60 dark:text-red-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        Hukum & Kriminal
+                    </span>
+                    <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
+                        <i class="fa-solid fa-shield-check"></i> Kasus Terungkap
+                    </span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400 ml-auto">
+                        <i class="fa-regular fa-clock mr-1"></i> Waktu baca: 4 menit
+                    </span>
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight mb-4">
+                    Geger Penculikan Balita 2 Tahun di Garut Terungkap! Pelaku Ternyata Sahabat Ibu Korban yang Sakit Hati Pernah Diusir
+                </h1>
+
+                <!-- Sub-headline / Lead -->
+                <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-medium leading-relaxed mb-6">
+                    Sempat viral di media sosial, aksi penculikan balita berinisial S di Tarogong Kaler, Garut berhasil digagalkan Tim Sancang Polres Garut. Pelaku diringkus saat membawa korban di dalam angkutan kota di wilayah Kabupaten Bandung.
+                </p>
+
+                <!-- Author & Publish Metadata -->
+                <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-slate-200 dark:border-slate-800 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 font-bold text-sm border-2 border-red-500">
+                            NF
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                                Nizam Fadlurrahman
+                                <i class="fa-solid fa-circle-check text-blue-500 text-xs" title="Jurnalis Terverifikasi"></i>
+                            </div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">
+                                Editor: Daffa Ryanda Putra • Tayang: Kamis, 12 November 2026 | 08:45 WIB
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-semibold text-slate-500 mr-1 hidden sm:inline">Bagikan:</span>
+                        <button onclick="shareArticle('WhatsApp')" class="w-9 h-9 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center transition shadow-sm" title="Bagikan ke WhatsApp">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                        </button>
+                        <button onclick="shareArticle('X / Twitter')" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-950 text-white flex items-center justify-center transition shadow-sm" title="Bagikan ke X">
+                            <i class="fa-brands fa-x-twitter text-sm"></i>
+                        </button>
+                        <button onclick="shareArticle('Facebook')" class="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition shadow-sm" title="Bagikan ke Facebook">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </button>
+                        <button onclick="copyArticleLink()" class="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 flex items-center justify-center transition shadow-sm" title="Salin Tautan">
+                            <i class="fa-solid fa-link text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Image / Illustration Card -->
+                <figure class="mb-8 rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg">
+                    <div class="relative aspect-video w-full bg-gradient-to-br from-slate-800 via-slate-900 to-red-950 flex items-center justify-center overflow-hidden">
+                        <!-- Ilustrasi SVG / Visual Berita Kepolisian -->
+                        <img 
+                            src="https://placehold.co/900x506/1e293b/f8fafc?text=PRESS+RELEASE+POLRES+GARUT+%7C+KASUS+PENCULIKAN+BALITA+TERUNGKAP" 
+                            alt="Ilustrasi Pengungkapan Kasus Penculikan Balita oleh Tim Sancang Polres Garut"
+                            onerror="this.style.display='none'; document.getElementById('fallback-banner').classList.remove('hidden');"
+                            class="w-full h-full object-cover opacity-90 hover:scale-105 transition duration-500"
+                        >
+                        <!-- Fallback Visual jika gambar gagal dimuat -->
+                        <div id="fallback-banner" class="hidden p-8 text-center text-white">
+                            <i class="fa-solid fa-shield-halved text-5xl text-red-500 mb-3"></i>
+                            <h3 class="text-xl font-bold">PENGUNGKAPAN KASUS PENCULIKAN BALITA</h3>
+                            <p class="text-sm text-slate-300 mt-1">Tim Sancang Satreskrim Polres Garut • November 2026</p>
+                        </div>
+
+                        <!-- Overlay Badge -->
+                        <div class="absolute bottom-3 left-3 bg-black/75 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-lg flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>Sumber: Dokumentasi Kepolisian & Laporan Lapangan</span>
+                        </div>
+                    </div>
+                    <figcaption class="p-3.5 bg-slate-100 dark:bg-slate-900 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800">
+                        <strong>ILUSTRASI PENGUNGKAPAN:</strong> Tim Sancang Polres Garut berhasil mengamankan pelaku penculikan berinisial WN (33) dan menyelamatkan balita S (2) dalam kondisi sehat.
+                    </figcaption>
+                </figure>
+
+                <!-- Ringkasan Fakta Kunci (Key Takeaways Box) -->
+                <div id="fakta-kasus" class="bg-white dark:bg-slate-900 rounded-2xl p-5 sm:p-6 border-l-4 border-red-600 shadow-md mb-8">
+                    <div class="flex items-center gap-2.5 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-950 text-red-600 flex items-center justify-center">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                        </div>
+                        <h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Ringkasan Fakta Kasus</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-100 dark:border-slate-800">
+                            <span class="text-xs font-bold uppercase text-slate-400 block mb-1">Identitas Korban</span>
+                            <p class="font-semibold text-slate-900 dark:text-white">Balita laki-laki berinisial S (2 tahun), warga Perumahan Bumi Malayu Asri, Kec. Tarogong Kaler, Garut.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-100 dark:border-slate-800">
+                            <span class="text-xs font-bold uppercase text-slate-400 block mb-1">Waktu Kejadian</span>
+                            <p class="font-semibold text-slate-900 dark:text-white">Kamis, 5 November 2026 sekitar pukul 11.30 WIB menggunakan mobil sewaan.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-100 dark:border-slate-800">
+                            <span class="text-xs font-bold uppercase text-slate-400 block mb-1">Identitas Pelaku & Penangkapan</span>
+                            <p class="font-semibold text-slate-900 dark:text-white">WN (33 tahun), dibekuk Tim Sancang Polres Garut di dalam angkutan kota (angkot) di Kab. Bandung.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/50">
+                            <span class="text-xs font-bold uppercase text-emerald-600 dark:text-emerald-400 block mb-1">Kondisi Terkini Korban</span>
+                            <p class="font-semibold text-emerald-900 dark:text-emerald-200">Ditemukan selamat, sehat tanpa luka-luka, dan telah dikembalikan ke pihak keluarga.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Article Body -->
+                <div id="article-content" class="article-body text-base sm:text-[17px] text-slate-700 dark:text-slate-300 font-serif">
+                    <p>
+                        <strong class="font-sans text-slate-900 dark:text-white">GARUT, PurNews</strong> — Jagat media sosial di Jawa Barat sempat digemparkan oleh kabar hilangnya seorang balita laki-laki berusia 2 tahun di Kabupaten Garut pada awal November 2026. Video rekaman CCTV dan poster pencarian korban yang beredar luas membuat kasus ini menjadi perhatian publik.
+                    </p>
+                    <p>
+                        Namun, kerja cepat jajaran Kepolisian Resor (Polres) Garut membuahkan hasil gemilang. Hanya dalam waktu singkat setelah laporan diterima, <strong class="font-sans text-slate-900 dark:text-white">Tim Sancang Satreskrim Polres Garut</strong> berhasil melacak keberadaan pelaku dan menyelamatkan balita berinisial <strong class="font-sans text-slate-900 dark:text-white">S (2)</strong> dari tangan penculik.
+                    </p>
+
+                    <h3 class="font-sans text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">
+                        Diculik di Rumah Menggunakan Mobil Sewaan
+                    </h3>
+                    <p>
+                        Peristiwa memilukan ini bermula pada <strong class="font-sans text-slate-900 dark:text-white">Kamis, 5 November 2026, sekitar pukul 11.30 WIB</strong>. Saat itu, korban S sedang berada di kediamannya di kawasan <strong class="font-sans text-slate-900 dark:text-white">Perumahan Bumi Malayu Asri, Kecamatan Tarogong Kaler, Kabupaten Garut</strong>.
+                    </p>
+                    <p>
+                        Pelaku berinisial <strong class="font-sans text-slate-900 dark:text-white">WN (33)</strong> datang ke lokasi dengan menggunakan sebuah mobil sewaan. Memanfaatkan situasi rumah yang lengah serta kedekatan yang sudah terbangun sebelumnya, pelaku dengan mudah membawa kabur balita malang tersebut menjauh dari wilayah Garut.
+                    </p>
+
+                    <!-- Pull Quote -->
+                    <blockquote class="my-8 p-6 bg-slate-100 dark:bg-slate-900 rounded-2xl border-l-4 border-slate-800 dark:border-red-500 font-sans">
+                        <i class="fa-solid fa-quote-left text-2xl text-red-500/40 mb-2 block"></i>
+                        <p class="text-base sm:text-lg font-semibold italic text-slate-800 dark:text-slate-200 !mb-2">
+                            "Begitu menerima laporan dari keluarga korban, Tim Sancang langsung bergerak melakukan penyelidikan intensif hingga akhirnya pelaku berhasil kami amankan di dalam angkutan kota di wilayah Kabupaten Bandung bersama korban."
+                        </p>
+                        <footer class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                            — Keterangan Resmi Kepolisian Resor Garut
+                        </footer>
+                    </blockquote>
+
+                    <h3 class="font-sans text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">
+                        Motif Mengejutkan: Sahabat Karib di Lapas Sukamiskin yang Sakit Hati
+                    </h3>
+                    <p>
+                        Fakta mengejutkan terungkap saat penyidik melakukan pemeriksaan mendalam terhadap tersangka WN. Ternyata, pelaku bukanlah orang asing bagi keluarga korban. WN merupakan <strong class="font-sans text-slate-900 dark:text-white">sahabat karib dari ibu kandung korban</strong>.
+                    </p>
+                    <p>
+                        Keduanya diketahui saling mengenal dan menjalin pertemanan dekat saat sama-sama pernah menjalani masa hukuman di <strong class="font-sans text-slate-900 dark:text-white">Lembaga Pemasyarakatan (Lapas) Sukamiskin</strong>, Bandung. Setelah bebas, keduanya sempat tinggal bersama.
+                    </p>
+                    <p>
+                        Namun, hubungan persahabatan tersebut retak. Kepada polisi, WN mengaku nekat menculik anak sahabatnya sendiri karena didasari <strong class="font-sans text-slate-900 dark:text-white">rasa sakit hati dan dendam pribadi</strong>. Pelaku merasa tersinggung lantaran pernah diusir oleh ibu korban saat mereka masih tinggal satu atap.
+                    </p>
+
+                    <h3 class="font-sans text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">
+                        Disergap di Dalam Angkot Kabupaten Bandung
+                    </h3>
+                    <p>
+                        Setelah membawa kabur korban menggunakan mobil sewaan dari Garut menuju arah Bandung, pelaku berupaya menghilangkan jejak dengan berpindah menggunakan transportasi umum. Pelarian WN akhirnya terhenti ketika Tim Sancang Polres Garut mencegat sebuah <strong class="font-sans text-slate-900 dark:text-white">angkutan kota (angkot) di wilayah Kabupaten Bandung</strong>.
+                    </p>
+                    <p>
+                        Di dalam angkot tersebut, petugas mendapati pelaku tengah memangku balita S. Tanpa perlawanan berarti, WN langsung diringkus dan digelandang ke Mapolres Garut untuk mempertanggungjawabkan perbuatannya secara hukum.
+                    </p>
+                    <p>
+                        Kabar melegakan bagi keluarga dan warganet yang mengikuti kasus ini: <strong class="font-sans text-slate-900 dark:text-white">balita S ditemukan dalam kondisi selamat, sehat walafiat, dan tidak mengalami luka-luka sedikit pun</strong>. Usai menjalani pemeriksaan medis ringan, korban langsung diserahkan kembali ke pelukan keluarganya di Garut dengan penuh haru.
+                    </p>
+                </div>
+
+                <!-- Interactive Timeline Section -->
+                <section id="kronologi" class="my-10 bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-timeline text-red-600"></i> Garis Waktu Peristiwa (Timeline)
+                    </h3>
+                    
+                    <div class="relative border-l-2 border-red-200 dark:border-red-900/60 ml-3 space-y-6">
+                        <!-- Step 1 -->
+                        <div class="relative pl-6">
+                            <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-slate-400 border-4 border-white dark:border-slate-900"></span>
+                            <span class="text-xs font-bold text-slate-500 uppercase">Latar Belakang Hubungan</span>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-0.5">Perkenalan di Lapas Sukamiskin & Konflik Tempat Tinggal</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">Pelaku WN (33) dan ibu korban berteman akrab sejak di Lapas Sukamiskin. Konflik muncul saat WN diusir ketika tinggal bersama ibu korban.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="relative pl-6">
+                            <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-red-600 border-4 border-white dark:border-slate-900"></span>
+                            <span class="text-xs font-bold text-red-600 uppercase">Kamis, 5 November 2026 • 11.30 WIB</span>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-0.5">Aksi Penculikan di Tarogong Kaler, Garut</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">Balita S (2) diculik dari rumahnya di Perumahan Bumi Malayu Asri oleh pelaku menggunakan mobil sewaan.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="relative pl-6">
+                            <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-amber-500 border-4 border-white dark:border-slate-900"></span>
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase">Pengejaran Polisi</span>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-0.5">Penangkapan di Dalam Angkot Kab. Bandung</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">Tim Sancang Polres Garut melacak pergerakan pelaku dan meringkus WN di dalam angkutan kota di Kabupaten Bandung.</p>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="relative pl-6">
+                            <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white dark:border-slate-900"></span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Korban Selamat</span>
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-0.5">Balita S Kembali ke Pelukan Keluarga</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">Korban dipastikan sehat tanpa luka-luka dan diserahkan kembali kepada pihak keluarga, sementara WN ditahan untuk proses hukum.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap items-center gap-2 py-4 border-t border-slate-200 dark:border-slate-800">
+                    <span class="text-xs font-bold text-slate-500 mr-1"><i class="fa-solid fa-tags mr-1"></i>Topik:</span>
+                    <a href="#" class="px-3 py-1 bg-slate-200/70 dark:bg-slate-800 hover:bg-red-600 hover:text-white text-xs font-medium rounded-lg transition">#PenculikanAnak</a>
+                    <a href="#" class="px-3 py-1 bg-slate-200/70 dark:bg-slate-800 hover:bg-red-600 hover:text-white text-xs font-medium rounded-lg transition">#PolresGarut</a>
+                    <a href="#" class="px-3 py-1 bg-slate-200/70 dark:bg-slate-800 hover:bg-red-600 hover:text-white text-xs font-medium rounded-lg transition">#TimSancang</a>
+                    <a href="#" class="px-3 py-1 bg-slate-200/70 dark:bg-slate-800 hover:bg-red-600 hover:text-white text-xs font-medium rounded-lg transition">#KriminalGarut</a>
+                    <a href="#" class="px-3 py-1 bg-slate-200/70 dark:bg-slate-800 hover:bg-red-600 hover:text-white text-xs font-medium rounded-lg transition">#BeritaViral2026</a>
+                </div>
+
+                <!-- Interactive Reader Reaction & Comment Section -->
+                <section id="komentar-section" class="mt-8 bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mb-2">
+                        Tanggapan Pembaca (<span id="comment-count">3</span>)
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-5">
+                        Sampaikan apresiasi atau pendapat Anda secara bijak dan santun.
+                    </p>
+
+                    <!-- Comment Form -->
+                    <form onsubmit="addComment(event)" class="mb-8 space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <input type="text" id="comment-name" required placeholder="Nama Anda (contoh: Budi Santoso)" class="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                            <input type="text" id="comment-city" placeholder="Kota Domisili (opsional, misal: Garut)" class="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        <textarea id="comment-text" rows="3" required placeholder="Tulis komentar Anda mengenai pengungkapan kasus ini..." class="w-full px-4 py-2.5 text-sm rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                        <div class="flex justify-end">
+                            <button type="submit" class="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-xl shadow-sm transition flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Kirim Komentar
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Comments List -->
+                    <div id="comments-list" class="space-y-4">
+                        <!-- Comment 1 -->
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">Rafif Albi Husnahjah</span>
+                                    <span class="text-[11px] px-2 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">Garut</span>
+                                </div>
+                                <span class="text-xs text-slate-400">1 jam lalu</span>
+                            </div>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">Alhamdulillah dedek S sudah ditemukan selamat tanpa kurang satu apapun. Apresiasi setinggi-tingginya buat Tim Sancang Polres Garut yang gercep!</p>
+                        </div>
+
+                        <!-- Comment 2 -->
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">Fajrin Putra Fajrulloh</span>
+                                    <span class="text-[11px] px-2 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">Bandung</span>
+                                </div>
+                                <span class="text-xs text-slate-400">2 jam lalu</span>
+                            </div>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">Pelajaran berharga buat semua orang tua, kadang bahaya justru datang dari orang terdekat yang kita kenal. Semoga pelaku dihukum seberat-beratnya.</p>
+                        </div>
+
+                        <!-- Comment 3 -->
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">Naufal Azkara Mollexa</span>
+                                    <span class="text-[11px] px-2 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">Tarogong</span>
+                                </div>
+                                <span class="text-xs text-slate-400">3 jam lalu</span>
+                            </div>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">Mantap Polres Garut, kemarin sempat ramai di grup warga Tarogong, ternyata langsung ketangkap di Bandung.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </article>
+
+            <!-- Right Column: Sidebar -->
+            <aside class="lg:col-span-4 space-y-8">
+                
+                <!-- Card: Informasi Polisi & Layanan Darurat -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-6 shadow-lg border border-slate-700">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-base">Layanan Darurat Kepolisian</h3>
+                            <p class="text-xs text-slate-300">Laporkan tindak kejahatan segera</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Jika Anda melihat aktivitas mencurigakan atau kehilangan anggota keluarga, segera hubungi layanan Call Center Polri bebas pulsa 24 jam.
+                    </p>
+                    <div class="flex items-center justify-between bg-white/10 rounded-xl p-3 border border-white/10">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Call Center Polri</span>
+                        <span class="text-xl font-black text-amber-400 tracking-wider">110</span>
+                    </div>
+                </div>
+
+                <!-- Card: Berita Terpopuler Jabar -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm sticky top-24">
+                    <div class="flex items-center justify-between mb-5 pb-3 border-b border-slate-100 dark:border-slate-800">
+                        <h3 class="font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                            <span class="w-2 h-5 bg-red-600 rounded-full"></span>
+                            Terpopuler di Jawa Barat
+                        </h3>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- Popular Item 1 -->
+                        <a href="#" class="group flex gap-3.5 items-start">
+                            <span class="text-2xl font-black text-red-600/80 leading-none">01</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-red-600 transition leading-snug">
+                                    Geger Penculikan Balita 2 Tahun di Garut Terungkap! Pelaku Ternyata Sahabat Ibu Korban
+                                </h4>
+                                <span class="text-[11px] text-slate-400 mt-1 block">Garut • 142.5rb dibaca</span>
+                            </div>
+                        </a>
+
+                        <!-- Popular Item 2 -->
+                        <a href="#" class="group flex gap-3.5 items-start">
+                            <span class="text-2xl font-black text-slate-300 dark:text-slate-700 leading-none">02</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-red-600 transition leading-snug">
+                                    Rekayasa Lalu Lintas Jalur Nagreg-Limbangan Jelang Akhir Pekan Ini
+                                </h4>
+                                <span class="text-[11px] text-slate-400 mt-1 block">Bandung • 48.2rb dibaca</span>
+                            </div>
+                        </a>
+
+                        <!-- Popular Item 3 -->
+                        <a href="#" class="group flex gap-3.5 items-start">
+                            <span class="text-2xl font-black text-slate-300 dark:text-slate-700 leading-none">03</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-red-600 transition leading-snug">
+                                    Tips Keamanan Lingkungan Perumahan untuk Cegah Aksi Kejahatan Siang Hari
+                                </h4>
+                                <span class="text-[11px] text-slate-400 mt-1 block">Edukasi • 31.9rb dibaca</span>
+                            </div>
+                        </a>
+
+                        <!-- Popular Item 4 -->
+                        <a href="#" class="group flex gap-3.5 items-start">
+                            <span class="text-2xl font-black text-slate-300 dark:text-slate-700 leading-none">04</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-red-600 transition leading-snug">
+                                    Polres Garut Tingkatkan Patroli Tim Sancang di Titik Rawan Kriminalitas
+                                </h4>
+                                <span class="text-[11px] text-slate-400 mt-1 block">Hukum • 25.4rb dibaca</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 mt-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-slate-800">
+                <div>
+                    <span class="font-extrabold text-2xl tracking-tight text-white">Pur<span class="text-red-500">News</span></span>
+                    <p class="text-xs text-slate-400 mt-1.5 max-w-md">
+                        Portal berita digital independen yang menyajikan informasi terkini seputar Jawa Barat, hukum, kriminal, dan peristiwa viral secara akurat dan berimbang.
+                    </p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-red-600 text-white flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-red-600 text-white flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-red-600 text-white flex items-center justify-center transition"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-red-600 text-white flex items-center justify-center transition"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs gap-4">
+                <p>&copy; 2026 PurNews. Hak Cipta Dilindungi Undang-Undang.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#" class="hover:text-white transition">Redaksi</a>
+                    <a href="#" class="hover:text-white transition">Pedoman Media Siber</a>
+                    <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition">Kontak Kami</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Helper: Menampilkan Notifikasi Toast (Tanpa alert())
+        function showToast(message, iconClass = 'fa-circle-check text-emerald-400') {
+            const toast = document.getElementById('toast-notification');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+            toastIcon.className = `fa-solid ${iconClass} text-lg`;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            
+            clearTimeout(window.toastTimeout);
+            window.toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        // 1. Toggle Dark Mode
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            html.classList.toggle('dark');
+            
+            if (html.classList.contains('dark')) {
+                icon.className = 'fa-solid fa-sun text-amber-400';
+                showToast('Mode Gelap diaktifkan', 'fa-moon text-amber-400');
+            } else {
+                icon.className = 'fa-solid fa-moon';
+                showToast('Mode Terang diaktifkan', 'fa-sun text-amber-400');
+            }
+        }
+
+        // 2. Ubah Ukuran Font Artikel
+        let currentFontLevel = 0; // -1, 0, 1, 2
+        function changeFontSize(delta) {
+            const article = document.getElementById('article-content');
+            if (delta === 0) {
+                currentFontLevel = 0;
+            } else {
+                currentFontLevel = Math.max(-1, Math.min(2, currentFontLevel + delta));
+            }
+
+            const sizes = ['text-sm sm:text-[15px]', 'text-base sm:text-[17px]', 'text-lg sm:text-[19px]', 'text-xl sm:text-[21px]'];
+            article.className = `article-body ${sizes[currentFontLevel + 1]} text-slate-700 dark:text-slate-300 font-serif transition-all`;
+            showToast('Ukuran teks bacaan disesuaikan', 'fa-text-height text-blue-400');
+        }
+
+        // 3. Bookmark Berita
+        let isBookmarked = false;
+        function toggleBookmark() {
+            isBookmarked = !isBookmarked;
+            const btn = document.getElementById('bookmark-btn');
+            if (isBookmarked) {
+                btn.innerHTML = '<i class="fa-solid fa-bookmark text-red-600"></i>';
+                showToast('Berita disimpan ke daftar bacaan');
+            } else {
+                btn.innerHTML = '<i class="fa-regular fa-bookmark"></i>';
+                showToast('Berita dihapus dari daftar bacaan', 'fa-bookmark text-slate-400');
+            }
+        }
+
+        // 4. Salin Tautan (Menggunakan execCommand sesuai kompatibilitas iframe)
+        function copyArticleLink() {
+            const tempInput = document.createElement('input');
+            tempInput.value = window.location.href;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast('Tautan berita berhasil disalin ke papan klip!');
+            } catch (err) {
+                showToast('Gagal menyalin tautan', 'fa-circle-exclamation text-red-400');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // 5. Simulasi Share Sosial Media
+        function shareArticle(platform) {
+            showToast(`Membuka jendela berbagi ke ${platform}...`, 'fa-share-nodes text-blue-400');
+        }
+
+        // 6. Tambah Komentar Pembaca
+        function addComment(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('comment-name');
+            const cityInput = document.getElementById('comment-city');
+            const textInput = document.getElementById('comment-text');
+            const commentsList = document.getElementById('comments-list');
+            const countSpan = document.getElementById('comment-count');
+
+            const name = nameInput.value.trim();
+            const city = cityInput.value.trim() || 'Pembaca';
+            const text = textInput.value.trim();
+
+            if (!name || !text) return;
+
+            // Escape HTML untuk keamanan
+            const escapeHTML = (str) => str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag]));
+
+            const newComment = document.createElement('div');
+            newComment.className = 'p-4 rounded-xl bg-red-50/60 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 transition-all';
+            newComment.innerHTML = `
+                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-sm text-slate-900 dark:text-white">${escapeHTML(name)}</span>
+                        <span class="text-[11px] px-2 py-0.5 bg-red-100 dark:bg-red-900/50 rounded text-red-700 dark:text-red-300">${escapeHTML(city)}</span>
+                    </div>
+                    <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">Baru saja</span>
+                </div>
+                <p class="text-sm text-slate-700 dark:text-slate-300">${escapeHTML(text)}</p>
+            `;
+
+            commentsList.prepend(newComment);
+            countSpan.textContent = parseInt(countSpan.textContent) + 1;
+
+            nameInput.value = '';
+            cityInput.value = '';
+            textInput.value = '';
+
+            showToast('Komentar Anda berhasil dipublikasikan!');
+        }
+    </script>
+</body>
+</html>
+```
